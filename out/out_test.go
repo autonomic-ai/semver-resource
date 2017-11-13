@@ -156,7 +156,7 @@ var _ = Describe("Out", func() {
 			})
 
 			for bump, result := range map[string]string{
-				"final": "1.2.3",
+				"final": "1.2.4",
 				"patch": "1.2.4",
 				"minor": "1.3.0",
 				"major": "2.0.0",
@@ -191,11 +191,11 @@ var _ = Describe("Out", func() {
 				})
 
 				It("reports the bumped version as the version", func() {
-					Expect(response.Version.Number).To(Equal("1.2.3-alpha.1"))
+					Expect(response.Version.Number).To(Equal("1.2.4-alpha.1"))
 				})
 
 				It("saves the contents of the file in the configured bucket", func() {
-					Expect(getVersion()).To(Equal("1.2.3-alpha.1"))
+					Expect(getVersion()).To(Equal("1.2.4-alpha.1"))
 				})
 
 				Context("when doing a semantic bump at the same time", func() {

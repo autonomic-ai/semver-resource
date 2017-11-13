@@ -7,11 +7,10 @@ type PreBump struct {
 }
 
 func (bump PreBump) Apply(v semver.Version) semver.Version {
-	if v.Pre == nil || v.Pre[0].VersionStr != bump.Pre {
-		v.Pre = []semver.PRVersion{
-			{VersionStr: bump.Pre},
-			{VersionNum: 1, IsNum: true},
-		}
+	if v.Pre == nil {
+		v = PatchBump{bump.Pre}.Apply(v)
+	} else if v.Pre[0].VersionStr != bump.Pre {
+		v = bump.init(v)
 	} else {
 		v.Pre = []semver.PRVersion{
 			{VersionStr: bump.Pre},
@@ -19,5 +18,13 @@ func (bump PreBump) Apply(v semver.Version) semver.Version {
 		}
 	}
 
+	return v
+}
+
+func (bump PreBump) init(v semver.Version) semver.Version {
+	v.Pre = []semver.PRVersion{
+		{VersionStr: bump.Pre},
+		{VersionNum: 1, IsNum: true},
+	}
 	return v
 }

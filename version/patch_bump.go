@@ -2,10 +2,15 @@ package version
 
 import "github.com/blang/semver"
 
-type PatchBump struct{}
+type PatchBump struct{
+	Pre string
+}
 
-func (PatchBump) Apply(v semver.Version) semver.Version {
+func (bump PatchBump) Apply(v semver.Version) semver.Version {
 	v.Patch++
 	v.Pre = nil
+	if bump.Pre != "" {
+		v = PreBump{bump.Pre}.init(v)
+	}
 	return v
 }

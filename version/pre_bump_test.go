@@ -69,7 +69,7 @@ var _ = Describe("PreBump", func() {
 				bump.Pre = "beta"
 			})
 
-			It("bumps bumps to version 1 of the new prerelease type", func() {
+			It("bumps to version 1 of the new prerelease type", func() {
 				Expect(outputVersion).To(Equal(semver.Version{
 					Major: 1,
 					Minor: 2,
@@ -92,11 +92,11 @@ var _ = Describe("PreBump", func() {
 			bump.Pre = "beta"
 		})
 
-		It("bumps bumps to version 1 of the new prerelease type", func() {
+		It("bumps patch and bumps to version 1 of the prerelease type", func() {
 			Expect(outputVersion).To(Equal(semver.Version{
 				Major: 1,
 				Minor: 2,
-				Patch: 3,
+				Patch: 4,
 				Pre: []semver.PRVersion{
 					{VersionStr: "beta"},
 					{VersionNum: 1, IsNum: true},

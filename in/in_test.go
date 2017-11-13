@@ -110,7 +110,7 @@ var _ = Describe("In", func() {
 
 		for bump, result := range map[string]string{
 			"":      "1.2.3",
-			"final": "1.2.3",
+			"final": "1.2.4",
 			"patch": "1.2.4",
 			"minor": "1.3.0",
 			"major": "2.0.0",
